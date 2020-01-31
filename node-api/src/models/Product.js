@@ -1,4 +1,5 @@
 const moongose = require('mongoose');
+const moongosePaginate = require('mongoose-paginate');
 
 const ProductSchema = new moongose.Schema({
     title: {
@@ -19,5 +20,5 @@ const ProductSchema = new moongose.Schema({
     },
 });     
 
-
+ProductSchema.plugin(moongosePaginate);
 moongose.model('Product', ProductSchema);
