@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
+const requireDir = require('require-dir');
 //Iniciando o App
 const app = express();
 
@@ -10,9 +10,14 @@ mongoose.connect('mongodb://localhost:27017/nodeapi', {
     useUnifiedTopology: true
 })
 
+requireDir("./src/models");
+
+const Product = mongoose.model('Product');
+
 //Primeira Rota
 app.get('/', (req, res) => {
-    res.send('Ola Mundo!');
+    Product.create({ title: 'React Nactive', description: 'My first description', url: 'http//google.com'});
+    return res.send('Ola Mundo!');
 });
 
 app.listen(3001);
