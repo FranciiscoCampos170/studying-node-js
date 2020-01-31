@@ -12,12 +12,9 @@ mongoose.connect('mongodb://localhost:27017/nodeapi', {
 
 requireDir("./src/models");
 
-const Product = mongoose.model('Product');
 
-//Primeira Rota
-app.get('/', (req, res) => {
-    Product.create({ title: 'React Nactive', description: 'My first description', url: 'http//google.com'});
-    return res.send('Ola Mundo!');
-});
+
+// Rotas
+app.use('/api', require('./src/routes'));
 
 app.listen(3001);
